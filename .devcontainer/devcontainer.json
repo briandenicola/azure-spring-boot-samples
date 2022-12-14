@@ -1,29 +1,32 @@
-// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
-// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/debian
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the
+// README at: https://github.com/devcontainers/templates/tree/main/src/java
 {
-	"name": "Debian",
-	"build": {
-		"dockerfile": "Dockerfile",
-		"args": { "VARIANT": "bullseye" }
-	},
-
-	"extensions": [
-		"vscjava.vscode-java-pack",
-		"GitHub.copilot"
-	],
-
-	"remoteUser": "vscode",
+	"name": "Java",
+	"image": "mcr.microsoft.com/devcontainers/java:0-17",
 	"features": {
-		"docker-in-docker": "latest",
-		"kubectl-helm-minikube": "1.23",
-		"terraform": "latest",
-		"azure-cli": "latest",
-		"java": "17",
-		"maven": "3.8"
+		"ghcr.io/devcontainers/features/java:1": {
+			"version": "none",
+			"installMaven": "true",
+			"installGradle": "false"
+		},
+		"ghcr.io/devcontainers/features/azure-cli:1": {},
+		"ghcr.io/devcontainers/features/common-utils:1": {},
+		"ghcr.io/devcontainers/features/docker-from-docker:1": {},
+		"ghcr.io/devcontainers/features/kubectl-helm-minikube:1": {},
+		"ghcr.io/devcontainers/features/terraform:1": {},
+		"ghcr.io/devcontainers-contrib/features/argo-cd:1": {},
+		"ghcr.io/devcontainers-contrib/features/argo-workflows:1": {},
+		"ghcr.io/rio/features/skaffold:1": {}
 	},
 
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	// "forwardPorts": [],
 	"waitFor": "postCreateCommand",
+	"postCreateCommand": "bash .devcontainer/post-create.sh"
+	
+	// Configure tool-specific properties.
+	// "customizations": {},
 
-	"postCreateCommand": "bash .devcontainer/post-create.sh",
-	"postStartCommand": "bash .devcontainer/post-start.sh"
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
 }
