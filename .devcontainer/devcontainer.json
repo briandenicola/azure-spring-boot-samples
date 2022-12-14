@@ -1,0 +1,29 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/debian
+{
+	"name": "Debian",
+	"build": {
+		"dockerfile": "Dockerfile",
+		"args": { "VARIANT": "bullseye" }
+	},
+
+	"extensions": [
+		"vscjava.vscode-java-pack",
+		"GitHub.copilot"
+	],
+
+	"remoteUser": "vscode",
+	"features": {
+		"docker-in-docker": "latest",
+		"kubectl-helm-minikube": "1.23",
+		"terraform": "latest",
+		"azure-cli": "latest",
+		"java": "17",
+		"maven": "3.8"
+	},
+
+	"waitFor": "postCreateCommand",
+
+	"postCreateCommand": "bash .devcontainer/post-create.sh",
+	"postStartCommand": "bash .devcontainer/post-start.sh"
+}
